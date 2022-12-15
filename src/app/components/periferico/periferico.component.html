@@ -1,0 +1,59 @@
+<div class="flex justify-content-between">
+    <h1>Gestion de Perifericos</h1>
+    <p-button label="Agregar" icon="pi pi-plus" (onClick)="showDialog()"></p-button>
+</div>
+
+<p-table [value]="perifericos" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Periferico</th>
+            <th>Marca</th>
+            <th>Id usuario</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-perifericos>
+        <tr>
+            <td>{{perifericos.nombre}}</td>
+            <td>{{perifericos.marca}}</td>
+            <td>{{perifericos.usuarioId}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <p>
+            {{mensajePerifericos}}
+        </p>
+    </ng-template>
+</p-table>
+
+<p-dialog header="Agregar Periferico" [(visible)]="displayBasic" [style]="{width:
+    '50vw'}" [modal]="true">
+    <form [formGroup]="form">
+        <div class="card">
+            <div class="field">
+                <label for="nombre">Periferico</label>
+                <input id="nombre" type="text" class="text-base text-color
+                    surface-overlay p-2 border-1 border-solid surface-border
+                    border-round appearance-none outline-none
+                    focus:border-primary w-full" formControlName="nombre">
+            </div>
+            <div class="field">
+                <label for="marca">Marca</label>
+                <input id="marca" type="text" class="text-base text-color
+                    surface-overlay p-2 border-1 border-solid surface-border
+                    border-round appearance-none outline-none
+                    focus:border-primary w-full" formControlName="marca">
+            </div>
+            <div class="field">
+                <label for="usuarioId">Id de Usuario</label>
+                <input id="usuarioId" type="number" class="text-base text-color
+                    surface-overlay p-2 border-1 border-solid surface-border
+                    border-round appearance-none outline-none
+                    focus:border-primary w-full" formControlName="usuarioId">
+            </div>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" label="Guardar"
+            styleClass="p-button-text" type="submit" (onClick)="crearPeriferico()" ></p-button>
+    </ng-template>
+</p-dialog>

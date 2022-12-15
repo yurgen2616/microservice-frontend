@@ -1,0 +1,48 @@
+<div class="flex justify-content-between">
+    <h1>Listado de Pertenencias</h1>
+    <h3>{{pertenencias.Usuario.nombre}} - {{pertenencias.Usuario.email}}</h3>
+</div>
+<p-tabView>
+    <p-tabPanel header="Perifericos">
+        <p-table [value]="pertenencias.Perifericos" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Periferico</th>
+                    <th>Marca</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-pertenencia>
+                <tr>
+                    <td>{{pertenencia.nombre}}</td>
+                    <td>{{pertenencia.marca}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <p>
+                    {{mensajePeriferico}}
+                </p>
+            </ng-template>
+        </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Roles">
+        <p-table [value]="pertenencias.Roles" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Rol</th>
+                    <th>Fecha de Ingreso</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-pertenencia>
+                <tr>
+                    <td>{{pertenencia.nombre}}</td>
+                    <td>{{pertenencia.fechaIngreso | date}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <p>
+                    {{mensajeRol}}
+                </p>
+            </ng-template>
+        </p-table>
+    </p-tabPanel>
+</p-tabView>

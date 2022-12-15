@@ -1,0 +1,59 @@
+<div class="flex justify-content-between">
+    <h1>Gestion de Roles</h1>
+    <p-button label="Agregar" icon="pi pi-plus" (onClick)="showDialog()"></p-button>
+</div>
+
+<p-table [value]="roles" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Rol</th>
+            <th>Fecha de Ingreso</th>
+            <th>Id usuario</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-roles>
+        <tr>
+            <td>{{roles.nombre}}</td>
+            <td>{{roles.fechaIngreso | date}}</td>
+            <td>{{roles.usuarioId}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <p>
+            {{mensajeRoles}}
+        </p>
+    </ng-template>
+</p-table>
+
+<p-dialog header="Agregar Rol" [(visible)]="displayBasic" [style]="{width:
+    '50vw'}" [modal]="true">
+    <form [formGroup]="form">
+        <div class="card">
+            <div class="field">
+                <label for="nombre">Rol</label>
+                <input id="nombre" type="text" class="text-base text-color
+                    surface-overlay p-2 border-1 border-solid surface-border
+                    border-round appearance-none outline-none
+                    focus:border-primary w-full" formControlName="nombre">
+            </div>
+            <div class="field">
+                <label for="fechaIngreso">Fecha de Ingreso</label>
+                <input id="fechaIngreso" type="date" class="text-base text-color
+                    surface-overlay p-2 border-1 border-solid surface-border
+                    border-round appearance-none outline-none
+                    focus:border-primary w-full" formControlName="fechaIngreso">
+            </div>
+            <div class="field">
+                <label for="usuarioId">Id de Usuario</label>
+                <input id="usuarioId" type="number" class="text-base text-color
+                    surface-overlay p-2 border-1 border-solid surface-border
+                    border-round appearance-none outline-none
+                    focus:border-primary w-full" formControlName="usuarioId">
+            </div>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" label="Guardar"
+            styleClass="p-button-text" type="submit" (onClick)="crearRol()" ></p-button>
+    </ng-template>
+</p-dialog>
